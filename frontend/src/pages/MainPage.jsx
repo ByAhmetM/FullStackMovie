@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
+import Hero from "./../components/Hero";
 const MainPage = () => {
   const [movies, setMovies] = useState(null);
 
@@ -12,11 +13,16 @@ const MainPage = () => {
   }, []);
   return (
     <div>
-      {!movies ? (
-        <p>Yükleniyor...</p>
-      ) : (
-        movies.map((movie) => <Card key={movie.id} movie={movie} />)
-      )}
+      <Hero />
+      <div className="p-4 grid gap-10  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {!movies ? (
+          <p>Yükleniyor...</p>
+        ) : (
+          movies.map((movie, i) => (
+            <Card key={movie.id} movie={movie} index={i} />
+          ))
+        )}
+      </div>
     </div>
   );
 };
