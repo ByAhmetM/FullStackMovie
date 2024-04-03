@@ -6,6 +6,13 @@ const postRequest = require("./methods/post-request");
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   switch (req.method) {
+    case "OPTIONS":
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      res.setHeader("Access-Control-Allow-Credentials", true);
+      res.end();
+      break;
     case "GET":
       getRequest(req, res);
       break;
